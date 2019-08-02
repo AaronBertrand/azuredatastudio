@@ -139,11 +139,11 @@ export default class ButtonComponent extends ComponentWithIconBase implements IC
 		this.setPropertyFromUI<azdata.ButtonProperties, string>(this.setValueProperties, newValue);
 	}
 
-	private get isFile(): boolean {
+	protected get isFile(): boolean {
 		return this.getPropertyOrDefault<azdata.ButtonProperties, boolean>((props) => props.isFile, false);
 	}
 
-	private set isFile(newValue: boolean) {
+	protected set isFile(newValue: boolean) {
 		this.setPropertyFromUI<azdata.ButtonProperties, boolean>(this.setFileProperties, newValue);
 	}
 

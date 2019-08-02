@@ -6,10 +6,9 @@
 import * as azdata from 'azdata';
 import { TreeNode } from 'sql/workbench/parts/objectExplorer/common/treeNode';
 import { ICapabilitiesService } from 'sql/platform/capabilities/common/capabilitiesService';
-import { ConnectionType, IConnectionManagementService } from 'sql/platform/connection/common/connectionManagement';
+import { IConnectionManagementService } from 'sql/platform/connection/common/connectionManagement';
 import { ConnectionProfile } from 'sql/platform/connection/common/connectionProfile';
 import { ITreeItem } from 'sql/workbench/common/views';
-import { IConnectionDialogService } from 'sql/workbench/services/connection/common/connectionDialogService';
 import { IObjectExplorerService } from 'sql/workbench/services/objectExplorer/common/objectExplorerService';
 import { hash } from 'vs/base/common/hash';
 import { Disposable } from 'vs/base/common/lifecycle';
@@ -41,7 +40,6 @@ export class OEShimService extends Disposable implements IOEShimService {
 	constructor(
 		@IObjectExplorerService private oe: IObjectExplorerService,
 		@IConnectionManagementService private cm: IConnectionManagementService,
-		@IConnectionDialogService private cd: IConnectionDialogService,
 		@ICapabilitiesService private capabilities: ICapabilitiesService
 	) {
 		super();

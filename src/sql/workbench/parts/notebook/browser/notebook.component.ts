@@ -70,8 +70,6 @@ export class NotebookComponent extends AngularDisposable implements OnInit, OnDe
 	@ViewChild('bookNav', { read: ElementRef }) private bookNav: ElementRef;
 
 	private _model: NotebookModel;
-	private _isInErrorState: boolean = false;
-	private _errorMessage: string;
 	protected _actionBar: Taskbar;
 	protected isLoading: boolean;
 	private notebookManagers: INotebookManager[] = [];
@@ -395,8 +393,6 @@ export class NotebookComponent extends AngularDisposable implements OnInit, OnDe
 	}
 
 	private setViewInErrorState(error: any): any {
-		this._isInErrorState = true;
-		this._errorMessage = getErrorMessage(error);
 		// For now, send message as error notification #870 covers having dedicated area for this
 		this.notificationService.error(error);
 	}

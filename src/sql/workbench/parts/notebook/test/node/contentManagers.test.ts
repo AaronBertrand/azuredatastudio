@@ -5,7 +5,6 @@
 
 import * as should from 'should';
 import { nb } from 'azdata';
-import * as typemoq from 'typemoq';
 
 import { URI } from 'vs/base/common/uri';
 import * as tempWrite from 'temp-write';

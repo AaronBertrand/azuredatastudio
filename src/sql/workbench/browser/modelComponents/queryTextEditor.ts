@@ -22,10 +22,8 @@ import { StandaloneCodeEditor } from 'vs/editor/standalone/browser/standaloneCod
 import { CancellationToken } from 'vs/base/common/cancellation';
 import { IEditorService } from 'vs/workbench/services/editor/common/editorService';
 import { ICodeEditor } from 'vs/editor/browser/editorBrowser';
-import { Configuration } from 'vs/editor/browser/config/configuration';
 import { IWindowService } from 'vs/platform/windows/common/windows';
 import { IEditorGroupsService } from 'vs/workbench/services/editor/common/editorGroupsService';
-import { IAccessibilityService } from 'vs/platform/accessibility/common/accessibility';
 import { IConfigurationService } from 'vs/platform/configuration/common/configuration';
 
 /**
@@ -53,8 +51,7 @@ export class QueryTextEditor extends BaseTextEditor {
 		@IEditorGroupsService editorGroupService: IEditorGroupsService,
 		@IEditorService protected editorService: IEditorService,
 		@IWindowService windowService: IWindowService,
-		@IConfigurationService private workspaceConfigurationService: IConfigurationService,
-		@IAccessibilityService private accessibilityService: IAccessibilityService
+		@IConfigurationService private workspaceConfigurationService: IConfigurationService
 
 	) {
 		super(

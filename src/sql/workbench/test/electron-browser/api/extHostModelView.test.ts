@@ -28,7 +28,6 @@ suite('ExtHostModelView Validation Tests', () => {
 	let widgetId = 'widget_id';
 	let handle = 1;
 	// let viewInitialized: Deferred<void>;
-	let initializedModels: IComponentShape[];
 
 	setup(done => {
 		// Set up the MainThreadModelViewShape proxy
@@ -221,8 +220,7 @@ suite('ExtHostModelView Validation Tests', () => {
 
 	test('Inserting and removing components from a container should work correctly', () => {
 		// Set up the mock proxy to save the component that gets initialized so that it can be verified
-		let rootComponent: IComponentShape;
-		mockProxy.setup(x => x.$initializeModel(It.isAny(), It.isAny())).callback((handle, componentShape) => rootComponent = componentShape);
+		mockProxy.setup(x => x.$initializeModel(It.isAny(), It.isAny()));
 		mockProxy.setup(x => x.$addToContainer(It.isAny(), It.isAny(), It.isAny(), undefined)).returns(() => Promise.resolve());
 		mockProxy.setup(x => x.$addToContainer(It.isAny(), It.isAny(), It.isAny(), It.isAny())).returns(() => Promise.resolve());
 		mockProxy.setup(x => x.$removeFromContainer(It.isAny(), It.isAny(), It.isAny())).returns(() => Promise.resolve());
@@ -246,8 +244,7 @@ suite('ExtHostModelView Validation Tests', () => {
 
 	test('Inserting component give negative number fails', () => {
 		// Set up the mock proxy to save the component that gets initialized so that it can be verified
-		let rootComponent: IComponentShape;
-		mockProxy.setup(x => x.$initializeModel(It.isAny(), It.isAny())).callback((handle, componentShape) => rootComponent = componentShape);
+		mockProxy.setup(x => x.$initializeModel(It.isAny(), It.isAny()));
 		mockProxy.setup(x => x.$addToContainer(It.isAny(), It.isAny(), It.isAny(), undefined)).returns(() => Promise.resolve());
 		mockProxy.setup(x => x.$addToContainer(It.isAny(), It.isAny(), It.isAny(), It.isAny())).returns(() => Promise.resolve());
 		mockProxy.setup(x => x.$removeFromContainer(It.isAny(), It.isAny(), It.isAny())).returns(() => Promise.resolve());
@@ -266,8 +263,7 @@ suite('ExtHostModelView Validation Tests', () => {
 
 	test('Inserting component give wrong number fails', () => {
 		// Set up the mock proxy to save the component that gets initialized so that it can be verified
-		let rootComponent: IComponentShape;
-		mockProxy.setup(x => x.$initializeModel(It.isAny(), It.isAny())).callback((handle, componentShape) => rootComponent = componentShape);
+		mockProxy.setup(x => x.$initializeModel(It.isAny(), It.isAny()));
 		mockProxy.setup(x => x.$addToContainer(It.isAny(), It.isAny(), It.isAny(), undefined)).returns(() => Promise.resolve());
 		mockProxy.setup(x => x.$addToContainer(It.isAny(), It.isAny(), It.isAny(), It.isAny())).returns(() => Promise.resolve());
 		mockProxy.setup(x => x.$removeFromContainer(It.isAny(), It.isAny(), It.isAny())).returns(() => Promise.resolve());
@@ -286,8 +282,7 @@ suite('ExtHostModelView Validation Tests', () => {
 
 	test('Inserting component give end of the list fails', () => {
 		// Set up the mock proxy to save the component that gets initialized so that it can be verified
-		let rootComponent: IComponentShape;
-		mockProxy.setup(x => x.$initializeModel(It.isAny(), It.isAny())).callback((handle, componentShape) => rootComponent = componentShape);
+		mockProxy.setup(x => x.$initializeModel(It.isAny(), It.isAny()));
 		mockProxy.setup(x => x.$addToContainer(It.isAny(), It.isAny(), It.isAny(), undefined)).returns(() => Promise.resolve());
 		mockProxy.setup(x => x.$addToContainer(It.isAny(), It.isAny(), It.isAny(), It.isAny())).returns(() => Promise.resolve());
 		mockProxy.setup(x => x.$removeFromContainer(It.isAny(), It.isAny(), It.isAny())).returns(() => Promise.resolve());
@@ -306,8 +301,7 @@ suite('ExtHostModelView Validation Tests', () => {
 
 	test('Removing a component that does not exist does not fail', () => {
 		// Set up the mock proxy to save the component that gets initialized so that it can be verified
-		let rootComponent: IComponentShape;
-		mockProxy.setup(x => x.$initializeModel(It.isAny(), It.isAny())).callback((handle, componentShape) => rootComponent = componentShape);
+		mockProxy.setup(x => x.$initializeModel(It.isAny(), It.isAny()));
 		mockProxy.setup(x => x.$addToContainer(It.isAny(), It.isAny(), It.isAny(), undefined)).returns(() => Promise.resolve());
 		mockProxy.setup(x => x.$addToContainer(It.isAny(), It.isAny(), It.isAny(), It.isAny())).returns(() => Promise.resolve());
 
@@ -328,8 +322,7 @@ suite('ExtHostModelView Validation Tests', () => {
 
 	test('Inserting and removing component in a form should work correctly', () => {
 		// Set up the mock proxy to save the component that gets initialized so that it can be verified
-		let rootComponent: IComponentShape;
-		mockProxy.setup(x => x.$initializeModel(It.isAny(), It.isAny())).callback((handle, componentShape) => rootComponent = componentShape);
+		mockProxy.setup(x => x.$initializeModel(It.isAny(), It.isAny()));
 		mockProxy.setup(x => x.$addToContainer(It.isAny(), It.isAny(), It.isAny(), undefined)).returns(() => Promise.resolve());
 		mockProxy.setup(x => x.$addToContainer(It.isAny(), It.isAny(), It.isAny(), It.isAny())).returns(() => Promise.resolve());
 		mockProxy.setup(x => x.$removeFromContainer(It.isAny(), It.isAny(), It.isAny())).returns(() => Promise.resolve());

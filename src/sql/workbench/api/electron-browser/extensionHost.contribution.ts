@@ -5,7 +5,6 @@
 
 import { IWorkbenchContribution, IWorkbenchContributionsRegistry, Extensions as WorkbenchExtensions } from 'vs/workbench/common/contributions';
 import { Registry } from 'vs/platform/registry/common/platform';
-import { IInstantiationService } from 'vs/platform/instantiation/common/instantiation';
 
 // --- SQL contributions
 import 'sql/workbench/api/browser/mainThreadConnectionManagement';
@@ -30,7 +29,6 @@ import { LifecyclePhase } from 'vs/platform/lifecycle/common/lifecycle';
 export class SqlExtHostContribution implements IWorkbenchContribution {
 
 	constructor(
-		@IInstantiationService private instantiationService: IInstantiationService
 	) {
 	}
 

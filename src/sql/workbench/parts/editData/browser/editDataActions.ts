@@ -132,7 +132,6 @@ export class ChangeMaxRowsAction extends EditDataAction {
 	public static ID = 'changeMaxRowsAction';
 
 	constructor(editor: EditDataEditor,
-		@IQueryModelService private _queryModelService: IQueryModelService,
 		@IConnectionManagementService _connectionManagementService: IConnectionManagementService
 	) {
 		super(editor, ChangeMaxRowsAction.ID, undefined, _connectionManagementService);
@@ -158,7 +157,6 @@ export class ChangeMaxRowsActionItem implements IActionViewItem {
 	private start: HTMLElement;
 	private selectBox: SelectBox;
 	private toDispose: IDisposable[];
-	private context: any;
 	private _options: string[];
 	private _currentOptionsIndex: number;
 
@@ -183,7 +181,6 @@ export class ChangeMaxRowsActionItem implements IActionViewItem {
 	}
 
 	public setActionContext(context: any): void {
-		this.context = context;
 	}
 
 	public isEnabled(): boolean {
@@ -239,7 +236,6 @@ export class ShowQueryPaneAction extends EditDataAction {
 	private readonly closeSqlLabel = nls.localize('editData.closeSql', "Close SQL Pane");
 
 	constructor(editor: EditDataEditor,
-		@IQueryModelService private _queryModelService: IQueryModelService,
 		@IConnectionManagementService _connectionManagementService: IConnectionManagementService
 	) {
 		super(editor, ShowQueryPaneAction.ID, ShowQueryPaneAction.EnabledClass, _connectionManagementService);

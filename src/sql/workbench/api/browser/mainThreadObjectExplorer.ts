@@ -3,7 +3,7 @@
  *  Licensed under the Source EULA. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { SqlExtHostContext, SqlMainContext, ExtHostObjectExplorerShape, MainThreadObjectExplorerShape } from 'sql/workbench/api/common/sqlExtHost.protocol';
+import { SqlMainContext, MainThreadObjectExplorerShape } from 'sql/workbench/api/common/sqlExtHost.protocol';
 import * as azdata from 'azdata';
 import * as vscode from 'vscode';
 import { IExtHostContext } from 'vs/workbench/api/common/extHost.protocol';
@@ -14,16 +14,12 @@ import { dispose, IDisposable } from 'vs/base/common/lifecycle';
 @extHostNamedCustomer(SqlMainContext.MainThreadObjectExplorer)
 export class MainThreadObjectExplorer implements MainThreadObjectExplorerShape {
 
-	private _proxy: ExtHostObjectExplorerShape;
 	private _toDispose: IDisposable[];
 
 	constructor(
 		extHostContext: IExtHostContext,
 		@IObjectExplorerService private _objectExplorerService: IObjectExplorerService,
 	) {
-		if (extHostContext) {
-			this._proxy = extHostContext.getProxy(SqlExtHostContext.ExtHostObjectExplorer);
-		}
 		this._toDispose = [];
 	}
 

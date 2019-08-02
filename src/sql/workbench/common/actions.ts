@@ -7,12 +7,10 @@ import { IConnectionManagementService } from 'sql/platform/connection/common/con
 import * as TaskUtilities from 'sql/workbench/browser/taskUtilities';
 import { IQueryEditorService } from 'sql/workbench/services/queryEditor/common/queryEditorService';
 import { IConnectionProfile } from 'sql/platform/connection/common/interfaces';
-import { IScriptingService } from 'sql/platform/scripting/common/scriptingService';
 import { IRestoreDialogController } from 'sql/platform/restore/common/restoreService';
 import { IAngularEventingService, AngularEventType } from 'sql/platform/angularEventing/common/angularEventingService';
 import { IInsightsDialogService } from 'sql/workbench/services/insights/browser/insightsDialogService';
 import { IObjectExplorerService } from 'sql/workbench/services/objectExplorer/common/objectExplorerService';
-import { IErrorMessageService } from 'sql/platform/errorMessage/common/errorMessageService';
 import { IBackupUiService } from 'sql/workbench/services/backup/common/backupUiService';
 import { Task } from 'sql/platform/tasks/browser/tasksRegistry';
 

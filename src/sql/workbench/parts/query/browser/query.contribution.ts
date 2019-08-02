@@ -35,8 +35,6 @@ import { LifecyclePhase } from 'vs/platform/lifecycle/common/lifecycle';
 import { TimeElapsedStatusBarContributions, RowCountStatusBarContributions, QueryStatusStatusBarContributions } from 'sql/workbench/parts/query/browser/statusBarItems';
 import { SqlFlavorStatusbarItem } from 'sql/workbench/parts/query/browser/flavorStatus';
 
-const gridCommandsWeightBonus = 100; // give our commands a little bit more weight over other default list/tree commands
-
 export const QueryEditorVisibleCondition = ContextKeyExpr.has(queryContext.queryEditorVisibleId);
 export const ResultsGridFocusCondition = ContextKeyExpr.and(ContextKeyExpr.has(queryContext.resultsVisibleId), ContextKeyExpr.has(queryContext.resultsGridFocussedId));
 export const ResultsMessagesFocusCondition = ContextKeyExpr.and(ContextKeyExpr.has(queryContext.resultsVisibleId), ContextKeyExpr.has(queryContext.resultsMessagesFocussedId));

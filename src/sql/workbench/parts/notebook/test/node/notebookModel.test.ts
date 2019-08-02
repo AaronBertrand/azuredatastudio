@@ -15,7 +15,7 @@ import { LocalContentManager } from 'sql/workbench/services/notebook/common/loca
 import { NotebookManagerStub } from './common';
 import { NotebookModel } from 'sql/workbench/parts/notebook/common/models/notebookModel';
 import { ModelFactory } from 'sql/workbench/parts/notebook/common/models/modelFactory';
-import { IClientSession, ICellModel, INotebookModelOptions, NotebookContentChange } from 'sql/workbench/parts/notebook/common/models/modelInterfaces';
+import { IClientSession, INotebookModelOptions, NotebookContentChange } from 'sql/workbench/parts/notebook/common/models/modelInterfaces';
 import { ClientSession } from 'sql/workbench/parts/notebook/common/models/clientSession';
 import { CellTypes, NotebookChangeType } from 'sql/workbench/parts/notebook/common/models/contracts';
 import { Deferred } from 'sql/base/common/promise';
@@ -28,7 +28,6 @@ import { TestStorageService } from 'vs/workbench/test/workbenchTestServices';
 import { IInstantiationService } from 'vs/platform/instantiation/common/instantiation';
 import { InstantiationService } from 'vs/platform/instantiation/common/instantiationService';
 import { ServiceCollection } from 'vs/platform/instantiation/common/serviceCollection';
-import { mssqlProviderName } from 'sql/platform/connection/common/constants';
 import { NullLogService } from 'vs/platform/log/common/log';
 
 let expectedNotebookContent: nb.INotebookContents = {
@@ -250,8 +249,6 @@ suite('notebook model', function (): void {
 		should(model.clientSession).not.be.undefined();
 		// but on server load completion I expect error state to be set
 		// Note: do not expect serverLoad event to throw even if failed
-		let kernelChangedArg: nb.IKernelChangedArgs = undefined;
-		model.kernelChanged((kernel) => kernelChangedArg = kernel);
 		await model.sessionLoadFinished;
 		should(model.inErrorState).be.false();
 		should(actualSession).equal(mockClientSession.object);
@@ -290,15 +287,4 @@ suite('notebook model', function (): void {
 		should(actualChanged).not.be.undefined();
 		should(actualChanged.changeType).equal(NotebookChangeType.TrustChanged);
 	});
-
-	function shouldHaveOneCell(model: NotebookModel): void {
-		should(model.cells).have.length(1);
-		verifyCellModel(model.cells[0], { cell_type: CellTypes.Code, source: 'insert into t1 values (c1, c2)', metadata: { language: 'python' }, execution_count: 1 });
-	}
-
-	function verifyCellModel(cellModel: ICellModel, expected: nb.ICellContents): void {
-		should(cellModel.cellType).equal(expected.cell_type);
-		should(cellModel.source).equal(expected.source);
-	}
-
 });

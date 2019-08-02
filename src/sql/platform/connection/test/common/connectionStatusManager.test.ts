@@ -96,7 +96,6 @@ suite('SQL ConnectionStatusManager tests', () => {
 
 	test('findConnection should return connection given valid id', () => {
 		let id: string = connection1Id;
-		let expected = connectionProfileObject;
 		let actual = connections.findConnection(id);
 		assert.equal(connectionProfileObject.matches(actual.connectionProfile), true);
 	});
@@ -110,7 +109,6 @@ suite('SQL ConnectionStatusManager tests', () => {
 
 	test('getConnectionProfile should return connection given valid id', () => {
 		let id: string = connection1Id;
-		let expected = connectionProfileObject;
 		let actual = connections.getConnectionProfile(id);
 		assert.equal(connectionProfileObject.matches(actual), true);
 	});

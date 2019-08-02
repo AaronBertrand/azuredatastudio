@@ -80,7 +80,7 @@ export default class CardComponent extends ComponentWithIconBase implements ICom
 	}
 	/// IComponent implementation
 
-	public setLayout(layout: any): void {
+	public setLayout(): void {
 		// TODO allow configuring the look and feel
 		this.layout();
 	}
@@ -177,7 +177,7 @@ export default class CardComponent extends ComponentWithIconBase implements ICom
 		this._changeRef.detectChanges();
 	}
 
-	private onDidActionClick(action: ActionDescriptor): void {
+	protected onDidActionClick(action: ActionDescriptor): void {
 		this.fireEvent({
 			eventType: ComponentEventType.onDidClick,
 			args: action

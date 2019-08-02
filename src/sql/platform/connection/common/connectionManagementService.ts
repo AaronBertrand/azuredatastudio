@@ -158,8 +158,6 @@ export class ConnectionManagementService extends Disposable implements IConnecti
 		return this._onLanguageFlavorChanged.event;
 	}
 
-	private _providerCount: number = 0;
-
 	// Connection Provider Registration
 	public registerProvider(providerId: string, provider: azdata.ConnectionProvider): void {
 		if (!this._providers.has(providerId)) {
@@ -602,12 +600,6 @@ export class ConnectionManagementService extends Disposable implements IConnecti
 
 	private focusDashboard(profile: IConnectionProfile): boolean {
 		let found: boolean = false;
-		let options = {
-			preserveFocus: false,
-			revealIfVisible: true,
-			revealInCenterIfOutsideViewport: true,
-			pinned: true
-		};
 
 		this._editorService.editors.map(editor => {
 			if (editor instanceof DashboardInput) {

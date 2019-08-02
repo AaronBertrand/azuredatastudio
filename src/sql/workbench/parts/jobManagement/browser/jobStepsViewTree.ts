@@ -162,7 +162,6 @@ export class JobStepsViewRenderer implements tree.IRenderer {
 }
 
 export class JobStepsViewFilter implements tree.IFilter {
-	private _filterString: string;
 
 	public isVisible(tree: tree.ITree, element: JobStepsViewRow): boolean {
 		return this._isJobVisible();
@@ -170,9 +169,5 @@ export class JobStepsViewFilter implements tree.IFilter {
 
 	private _isJobVisible(): boolean {
 		return true;
-	}
-
-	public set filterString(val: string) {
-		this._filterString = val;
 	}
 }

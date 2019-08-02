@@ -29,7 +29,6 @@ import * as strings from 'vs/base/common/strings';
 import { IWorkbenchThemeService } from 'vs/workbench/services/themes/common/workbenchThemeService';
 import { IContextViewService } from 'vs/platform/contextview/browser/contextView';
 import { IClipboardService } from 'vs/platform/clipboard/common/clipboardService';
-import { IInstantiationService } from 'vs/platform/instantiation/common/instantiation';
 import { ISelectOptionItem } from 'vs/base/browser/ui/selectBox/selectBox';
 import { KeyCode } from 'vs/base/common/keyCodes';
 
@@ -147,7 +146,6 @@ export class BackupComponent {
 
 	private _uri: string;
 	private _toDispose: lifecycle.IDisposable[] = [];
-	private _advancedHeaderSize = 32;
 
 	private connection: IConnectionProfile;
 	private databaseName: string;
@@ -157,16 +155,14 @@ export class BackupComponent {
 	private containsBackupToUrl: boolean;
 
 	// UI element disable flag
-	private disableFileComponent: boolean;
-	private disableTlog: boolean;
+	protected disableTlog: boolean;
 
-	private selectedBackupComponent: string;
 	private selectedFilesText: string;
 	private selectedInitOption: string;
 	private isTruncateChecked: boolean;
 	private isTaillogChecked: boolean;
 	private isFormatChecked: boolean;
-	private isEncryptChecked: boolean;
+	protected isEncryptChecked: boolean;
 	// Key: backup path, Value: device type
 	private backupPathTypePairs: { [path: string]: number };
 
@@ -197,7 +193,6 @@ export class BackupComponent {
 	private continueOnErrorCheckBox: Checkbox;
 
 	constructor(
-		@Inject(forwardRef(() => ElementRef)) private _el: ElementRef,
 		@Inject(forwardRef(() => ChangeDetectorRef)) private _changeDetectorRef: ChangeDetectorRef,
 		@Inject(IWorkbenchThemeService) private themeService: IWorkbenchThemeService,
 		@Inject(IContextViewService) private contextViewService: IContextViewService,
@@ -205,8 +200,7 @@ export class BackupComponent {
 		@Inject(IBackupUiService) private _backupUiService: IBackupUiService,
 		@Inject(IBackupService) private _backupService: IBackupService,
 		@Inject(IClipboardService) private clipboardService: IClipboardService,
-		@Inject(IConnectionManagementService) private connectionManagementService: IConnectionManagementService,
-		@Inject(IInstantiationService) private instantiationService: IInstantiationService
+		@Inject(IConnectionManagementService) private connectionManagementService: IConnectionManagementService
 	) {
 		this._backupUiService.onShowBackupEvent((param) => this.onGetBackupConfigInfo(param));
 	}
@@ -423,7 +417,6 @@ export class BackupComponent {
 	private initialize(isMetadataPopulated: boolean): void {
 
 		this.databaseName = this.connection.databaseName;
-		this.selectedBackupComponent = BackupConstants.labelDatabase;
 		this.backupPathTypePairs = {};
 		this.isFormatChecked = false;
 		this.isEncryptChecked = false;
@@ -595,7 +588,7 @@ export class BackupComponent {
 		this.resetDialog();
 	}
 
-	private onChangeTlog(): void {
+	protected onChangeTlog(): void {
 		this.isTruncateChecked = !this.isTruncateChecked;
 		this.isTaillogChecked = !this.isTaillogChecked;
 		this.detectChange();
@@ -718,13 +711,6 @@ export class BackupComponent {
 	* Helper methods
 	*/
 	private setControlsForRecoveryModel(): void {
-		if (this.recoveryModel === BackupConstants.recoveryModelSimple) {
-			this.selectedBackupComponent = BackupConstants.labelDatabase;
-			this.disableFileComponent = true;
-		} else {
-			this.disableFileComponent = false;
-		}
-
 		this.populateBackupTypes();
 	}
 
@@ -769,20 +755,6 @@ export class BackupComponent {
 			// Add a default new backup location
 			this.backupPathTypePairs[defaultNewBackupLocation] = BackupConstants.deviceTypeFile;
 		}
-	}
-
-	private isBackupToFile(controllerType: number): boolean {
-		let isfile = false;
-		if (controllerType === 102) {
-			isfile = true;
-		} else if (controllerType === 105) {
-			isfile = false;
-		} else if (controllerType === BackupConstants.backupDeviceTypeDisk) {
-			isfile = true;
-		} else if (controllerType === BackupConstants.backupDeviceTypeTape || controllerType === BackupConstants.backupDeviceTypeURL) {
-			isfile = false;
-		}
-		return isfile;
 	}
 
 	private enableMediaInput(enable: boolean): void {
